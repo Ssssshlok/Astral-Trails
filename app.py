@@ -33,7 +33,11 @@ st.info("This tool estimates the radiation dose and cancer risk for a space miss
 
 # Inputs
 mission_days = st.slider("Mission Duration (days)", 1, 1000, 180)
-shielding_material = st.selectbox("Shielding Material", ["None", "Aluminum", "Polyethylene"])
+shielding_material = st.selectbox(
+    "Shielding Material",
+    ["None", "Aluminum", "Polyethylene", "Lead", "Water", "Titanium", "Carbon Fiber", "Hydrogen-rich Plastic"]
+)
+
 
 # Real-time proton flux from NOAA
 url = "https://services.swpc.noaa.gov/json/goes/primary/differential-proton-flux-1-day.json"
@@ -48,7 +52,17 @@ except:
 
 # Simplified dose model
 base_dose_per_day = flux * 0.00005  # empirical approximation
-shield_factors = {'None': 1.0, 'Aluminum': 0.7, 'Polyethylene': 0.5}
+shield_factors = {
+    'None': 1.0,
+    'Aluminum': 0.7,
+    'Polyethylene': 0.5,
+    'Lead': 0.3,
+    'Water': 0.6,
+    'Titanium': 0.75,
+    'Carbon Fiber': 0.65,
+    'Hydrogen-rich Plastic': 0.4
+}
+
 daily_dose = base_dose_per_day * shield_factors[shielding_material]
 total_dose = daily_dose * mission_days  # in mSv
 
