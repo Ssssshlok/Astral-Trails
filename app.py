@@ -6,6 +6,31 @@ st.set_page_config(page_title="Radiation Risk Calculator", layout="centered")
 
 st.title("Cosmic Radiation Risk Calculator")
 
+# --- Intro Section ---
+st.subheader("🔬 Understanding Cosmic Radiation Risks")
+st.markdown("""
+Cosmic radiation is a form of high-energy radiation that originates from outside Earth’s atmosphere.  
+There are two main types relevant to space missions:
+- **Galactic Cosmic Rays (GCRs)**: Constant background radiation from deep space.
+- **Solar Energetic Particles (SEPs)**: Burst-like radiation from solar flares and CMEs.
+
+These can cause:
+- Cellular damage  
+- Increased cancer risk  
+- Radiation sickness on long missions
+
+The solar cycle affects the intensity of this radiation, as shown below:
+""")
+
+# --- Solar Cycle Image from NOAA ---
+st.image("https://services.swpc.noaa.gov/json/solar-cycle/cycle_update.png", caption="NOAA Solar Cycle Status", use_column_width=True)
+
+st.divider()  # visual break before calculator
+
+# --- Radiation Risk Calculator Section ---
+st.subheader("🧮 Radiation Risk Calculator")
+st.info("This tool estimates the radiation dose and cancer risk for a space mission based on real-time solar particle flux and selected shielding.")
+
 # Inputs
 mission_days = st.slider("Mission Duration (days)", 1, 1000, 180)
 shielding_material = st.selectbox("Shielding Material", ["None", "Aluminum", "Polyethylene"])
@@ -33,5 +58,4 @@ risk_percent = (total_dose / 1000) * 5  # linear ERR model
 st.metric("☢ Estimated Total Dose (mSv)", f"{total_dose:.2f}")
 st.metric("⚠ Estimated Cancer Risk", f"{risk_percent:.2f} %")
 
-st.caption("ICRP model: 5% risk increase per 1 Sv of exposure. Not for clinical use.")
-
+st.caption("ICRP model: 5% risk increase per 1 Sv of exposure. Not for clinical use.")
