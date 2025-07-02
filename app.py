@@ -2,9 +2,9 @@ import streamlit as st
 import requests
 import numpy as np
 
-st.set_page_config(page_title="AstralTrailsShlok", layout="centered")
+st.set_page_config(page_title="Shlok", layout="centered")
 
-st.title("Cosmic Radiation Risk Calculator")
+st.title("Cosmic Radiation Origin and Risks")
 
 # --- Intro Section ---
 st.subheader("🔬 Understanding Cosmic Radiation Risks")
