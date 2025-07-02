@@ -2,7 +2,7 @@ import streamlit as st
 import requests
 import numpy as np
 
-st.set_page_config(page_title="Radiation Risk Calculator", layout="centered")
+st.set_page_config(page_title="AstralTrailsShlok", layout="centered")
 
 st.title("Cosmic Radiation Risk Calculator")
 
